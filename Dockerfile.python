@@ -1,0 +1,11 @@
+#Example to run the scheduler with asynchronously a "curl" command every 5 seconds and a python http server as next command
+
+#Get the scheduler
+FROM ghcr.io/equinor/task-scheduler:latest as scheduler
+
+#Run the scheduler with a curl command every 5 seconds and a python http server as main command
+FROM python
+WORKDIR /app
+COPY --from=scheduler /scheduler /scheduler
+USER 1000
+CMD ["/scheduler", "--command=curl https://worldtimeapi.org/api/timezone/Europe/Oslo.txt", "--schedule=0/5 * * * * *", "--verbose", "--next-command=python -m http.server 8080"]
