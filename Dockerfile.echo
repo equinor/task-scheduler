@@ -2,7 +2,7 @@
 FROM ghcr.io/equinor/task-scheduler:latest as scheduler
 
 #run the scheduler in a shell
-FROM bitnami/bitnami-shell
+FROM alpine
 COPY --from=scheduler /scheduler /scheduler
 USER 1000
 CMD ["/scheduler", "--command=echo \"test\"", "--schedule=0/5 * * * * *", "--verbose"]
