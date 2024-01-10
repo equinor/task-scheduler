@@ -60,8 +60,6 @@ See more https://crontab.cronhub.io/ or https://docs.oracle.com/cd/E12058_01/doc
 				runCommand(nextCommand, verbose)
 			}
 			select {} // Block forever
-
-			return nil
 		},
 	}
 

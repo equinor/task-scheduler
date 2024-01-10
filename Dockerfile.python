@@ -4,7 +4,7 @@
 FROM ghcr.io/equinor/task-scheduler:latest as scheduler
 
 #Run the scheduler with a curl command every 5 seconds and a python http server as main command
-FROM python
+FROM python:alpine3.19
 WORKDIR /app
 COPY --from=scheduler /scheduler /scheduler
 USER 1000
